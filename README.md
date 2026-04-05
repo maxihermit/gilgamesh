@@ -1,6 +1,6 @@
-# 4d-bag (四次元百宝袋)
+# 4d-bag（四次元百寶袋）
 
-[English](#what-it-does) | [中文](#中文说明)
+[English](#what-it-does) | [繁體中文](#繁體中文說明)
 
 An AI skill that finds trending open-source projects and tells you which ones are worth using in your projects — with security checks. Works with Claude Code, Codex, Cursor, Copilot, or any AI assistant.
 
@@ -29,11 +29,11 @@ Gives you a report: ADOPT / TRIAL / ASSESS / HOLD / AVOID
 
 ```bash
 # Option 1: Global (works in all projects)
-curl -o ~/.claude/commands/4d-bag.md https://raw.githubusercontent.com/YOUR_USERNAME/4d-bag/main/4d-bag.md
+curl -o ~/.claude/commands/4d-bag.md https://raw.githubusercontent.com/maxihermit/4d-bag/main/4d-bag.md
 
 # Option 2: Per-project
 mkdir -p .claude/commands
-curl -o .claude/commands/4d-bag.md https://raw.githubusercontent.com/YOUR_USERNAME/4d-bag/main/4d-bag.md
+curl -o .claude/commands/4d-bag.md https://raw.githubusercontent.com/maxihermit/4d-bag/main/4d-bag.md
 ```
 
 Then use:
@@ -99,41 +99,49 @@ export GITHUB_TOKEN=ghp_...
 
 ---
 
-## 中文说明
+## 繁體中文說明
 
-一个 AI Skill，自动帮你找最近热门的开源项目，对比你正在开发的所有项目，告诉你哪些值得用、哪些有安全问题。
+一個 AI Skill，自動幫你找最近熱門的開源專案，對比你正在開發的所有專案，告訴你哪些值得用、哪些有資安問題。
 
-**只看不装，不读你的源码。**
+**只看不裝，不讀你的原始碼。**
 
-### 安装
+### 安裝
 
 ```bash
 # Claude Code
 curl -o ~/.claude/commands/4d-bag.md https://raw.githubusercontent.com/maxihermit/4d-bag/main/4d-bag.md
 
 # 其他平台（Codex / Cursor / Copilot）
-# 把 4d-bag.md 的内容复制到对应的配置文件里
+# 把 4d-bag.md 的內容複製到對應的設定檔裡
 ```
 
-### 使用
+### 使用方式
 
 ```
-/4d-bag                          # 扫描当前项目
-/4d-bag all                      # 扫描所有项目
-/4d-bag audit owner/repo         # 安全审计指定 repo
-/4d-bag typescript               # 只看特定语言
-/4d-bag 简报工具                   # 搜特定主题
+/4d-bag                          # 掃描目前的專案
+/4d-bag all                      # 掃描所有專案
+/4d-bag audit owner/repo         # 資安審計指定 repo
+/4d-bag typescript               # 只看特定語言
+/4d-bag 簡報工具                   # 搜尋特定主題
 ```
 
-### 它会做什么
+### 它會做什麼
 
-1. 读你的 package.json 等清单文件（不读源码、不读 .env）
-2. 搜 GitHub + Hacker News 热门项目
-3. 评估跟你项目的相关性
-4. 检查 license、已知漏洞、维护状态
-5. 给出推荐：ADOPT / TRIAL / ASSESS / HOLD / AVOID
+1. 讀取你的 package.json 等清單檔案（不讀原始碼、不讀 .env）
+2. 搜尋 GitHub + Hacker News 熱門專案
+3. 評估跟你專案的相關性
+4. 檢查 license、已知漏洞、維護狀態
+5. 給出建議：ADOPT（直接用）/ TRIAL（試試看）/ ASSESS（觀望）/ HOLD（先別碰）/ AVOID（別用）
 
-可以搭配定时任务每天自动跑。
+可以搭配排程任務每天自動跑。
+
+### 資安與隱私
+
+- 只讀 package.json 等設定檔，**不讀原始碼**
+- **不讀** .env、密碼、金鑰等機敏檔案
+- **不安裝**任何東西，只產生報告
+- **不會把你的程式碼傳到外部**，只查詢 GitHub / HN / OSV 公開 API
+- 完整 prompt 就在 `4d-bag.md` 裡，90 行，你可以自己審查
 
 ## License
 

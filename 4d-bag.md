@@ -17,14 +17,17 @@ Discover trending open-source projects and tell the user which ones are useful f
 - `/4d-bag typescript` — filter by language
 - `/4d-bag daily` — last 24 hours (default: weekly)
 - `/4d-bag presentation tools` — search specific topic
+- `/4d-bag deep` — deep mode: also read source code for better recommendations
 
 ## Step 1: Read the Project
 
-Read `package.json`, `requirements.txt`, `pyproject.toml`, `go.mod`, `Cargo.toml`, or `README.md` to understand the tech stack.
+**Default mode:** Read `package.json`, `requirements.txt`, `pyproject.toml`, `go.mod`, `Cargo.toml`, or `README.md` to understand the tech stack. This is safe and enough for most cases.
+
+**Deep mode** (user must explicitly say `deep`): Also scan source code files (*.ts, *.py, *.go, etc.) to understand what the project actually does — e.g. detect hand-rolled auth, custom ORMs, or pain points that manifest files don't reveal. Only use this when the user explicitly requests it.
 
 If `all`: scan every subdirectory.
 
-**NEVER read source code, .env, credentials, or secrets.**
+**In both modes: NEVER read .env, credentials, API keys, or secrets.**
 
 ## Step 2: Search
 

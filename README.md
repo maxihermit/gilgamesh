@@ -37,7 +37,7 @@
 | SR | 值得試用 |
 | R | 有潛力，再看看 |
 | N | 有疑慮，先別碰 |
-| 廢鐵 | 不安全，別用 |
+| 廢鐵 | 不安全，狗都不用 |
 
 ## 安裝
 
@@ -174,7 +174,7 @@ In Claude Code, say: `Help me create a scheduled task that runs /oss all every m
 | SR | Worth trying. |
 | R | Has potential. Evaluate further. |
 | N | Has concerns. Wait. |
-| Junk | Unsafe. Don't use it. |
+| Junk | Unsafe. Not even my dog would use it. |
 
 ### Security & Privacy
 

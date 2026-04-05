@@ -82,7 +82,7 @@ Grades:
 - **SR** — worth trying
 - **R** — potential, unconfirmed
 - **N** — concerns detected
-- **Junk** — unsafe, skip
+- **Junk** — unsafe, don't touch it
 
 ## Step 4: Report
 

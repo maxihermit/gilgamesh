@@ -10,29 +10,36 @@
 
 > *「別再重新發明輪子，讓本王替你海巡 GitHub！」*
 
-輸入 `/oss`，替你的專案在 GitHub 物色合適的開源代碼。
+這是一個 AI Skill — 一個 `.md` 檔案，下載到你的 AI 編輯器裡，就能用 `/oss` 指令讓 AI 幫你在 GitHub 上找合適的開源代碼。
 
 ```
-/oss → 讀技術棧 → 搜 GitHub + HN → 列出來問你
-     → 你指哪個 → 讀你的代碼比對 → 告訴你值不值得
+你在專案裡輸入 /oss
+      ↓
+AI 讀你的技術棧 → 搜 GitHub + HN → 列出來問你
+      ↓
+你指哪個感興趣 → AI 去讀你的代碼比對 → 告訴你值不值得
 ```
 
 只報告，不安裝。「都不需要」是正常結果。
 
-### 安裝
+### 安裝（下載一個檔案就好）
+
+選你用的 AI 編輯器，在終端機貼一行指令：
 
 ```bash
-# Claude Code
+# Claude Code — 下載到 commands 資料夾，重開對話即生效
 curl -o ~/.claude/commands/oss.md https://raw.githubusercontent.com/maxihermit/gate-of-oss/main/oss.md
 
-# Codex
+# Codex — 放到專案根目錄的 .codex/skills/oss/
 mkdir -p .codex/skills/oss && curl -o .codex/skills/oss/SKILL.md https://raw.githubusercontent.com/maxihermit/gate-of-oss/main/oss.md
 
-# Cursor
+# Cursor — 放到 .cursor/rules/
 mkdir -p .cursor/rules && curl -o .cursor/rules/oss.mdc https://raw.githubusercontent.com/maxihermit/gate-of-oss/main/oss.md
 
-# Copilot — 追加 oss.md 內容到 .github/copilot-instructions.md
+# Copilot — 把 oss.md 內容追加到 .github/copilot-instructions.md
 ```
+
+裝完後在 AI 對話裡打 `/oss`，就會開始跑了。
 
 ### 用法
 
@@ -108,29 +115,36 @@ mkdir -p .cursor/rules && curl -o .cursor/rules/oss.mdc https://raw.githubuserco
 
 > *"Stop reinventing the wheel. Let the king patrol GitHub for you."*
 
-Type `/oss` to find useful open-source code for your project on GitHub.
+This is an AI Skill — a single `.md` file. Download it into your AI editor, then type `/oss` to let AI find useful open-source code for your project.
 
 ```
-/oss → reads tech stack → searches GitHub + HN → shows menu
-     → you pick → it reads your code → honest verdict
+Type /oss in your project
+      ↓
+AI reads your tech stack → searches GitHub + HN → shows a menu
+      ↓
+You pick what's interesting → AI reads your code → honest verdict
 ```
 
 Reports only. Never installs. "You don't need anything" is a valid result.
 
-### Install
+### Install (one file)
+
+Pick your AI editor, paste one command in your terminal:
 
 ```bash
-# Claude Code
+# Claude Code — downloads to commands folder, works on next conversation
 curl -o ~/.claude/commands/oss.md https://raw.githubusercontent.com/maxihermit/gate-of-oss/main/oss.md
 
-# Codex
+# Codex — place in project root .codex/skills/oss/
 mkdir -p .codex/skills/oss && curl -o .codex/skills/oss/SKILL.md https://raw.githubusercontent.com/maxihermit/gate-of-oss/main/oss.md
 
-# Cursor
+# Cursor — place in .cursor/rules/
 mkdir -p .cursor/rules && curl -o .cursor/rules/oss.mdc https://raw.githubusercontent.com/maxihermit/gate-of-oss/main/oss.md
 
-# Copilot — append oss.md to .github/copilot-instructions.md
+# Copilot — append oss.md contents to .github/copilot-instructions.md
 ```
+
+After install, type `/oss` in your AI chat. That's it.
 
 ### Usage
 

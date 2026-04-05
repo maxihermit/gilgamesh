@@ -1,14 +1,12 @@
-# 王之開源（Gate of Open Source）
+# 四次元百寶袋（4D Bag）
 
-![Gate of Open Source](assets/banner.png)
+![banner](assets/banner.png)
 
 [繁體中文](#這是什麼) | [English](#english)
 
-> *「你竟敢在沒有查閱寶庫的情況下開發？天下所有的開源寶物皆屬於我。」*
-
 ## 這是什麼
 
-一個 AI Skill。裝好之後，你只要打 `/oss`，它就會自動去 GitHub 和 Hacker News 找最近熱門的開源專案，跟你說哪些對你正在開發的東西有用，然後幫你檢查那些專案安不安全。
+一個 AI Skill。裝好之後，你只要打 `/oss`，它就會像從百寶袋裡翻東西一樣，自動去 GitHub 和 Hacker News 幫你找最近熱門的開源專案，跟你說哪些對你正在開發的東西有用，然後幫你檢查那些專案安不安全。
 
 **它只會給你報告，不會幫你安裝任何東西。**
 
@@ -20,7 +18,7 @@
 每天 GitHub 上都有新的開源工具出現
 你不可能每天自己去看
       ↓
-/oss 幫你去看
+/oss 幫你去翻百寶袋
       ↓
 比對你的專案用了什麼技術、缺了什麼
       ↓
@@ -63,7 +61,7 @@ curl -o .cursor/rules/oss.mdc https://raw.githubusercontent.com/maxihermit/gate-
 
 ### GitHub Copilot
 
-把 `oss.md` 的內容**追加**到 `.github/copilot-instructions.md` 的最後面（不要覆蓋原本的內容）。
+把 `oss.md` 的內容**追加**到 `.github/copilot-instructions.md` 的最後面。
 
 ### 其他平台
 
@@ -93,22 +91,22 @@ curl -o .cursor/rules/oss.mdc https://raw.githubusercontent.com/maxihermit/gate-
 ## 報告長什麼樣子
 
 ```
-═══════════════════════════════════════
-  my-web-app — 電商網站
-═══════════════════════════════════════
+我去翻了一下 GitHub，幫 my-web-app 找到幾個好東西：
+
+🔮 my-web-app — 電商網站
 
   SSR  ⭐ 15,234  vercel/ai — 3 行就能做串流 AI 回應
   SR   ⭐ 82,000  shadcn/ui — 不用再自己刻 UI 元件
 
-  ┌─ vercel/ai — 做 AI 功能的 SDK
+  ┌─ 從百寶袋裡翻到：vercel/ai
   │  ⭐ 15,234  MIT  2 天前更新  156 人貢獻
-  │  等級: SSR
+  │  SSR
   │
-  │  Before:  自己寫 fetch 串 OpenAI，80 行，串流不穩定
-  │  After:   用 useChat hook，3 行，自動串流 + 重試
-  │  差異:    省 80 行程式碼，穩定性大幅提升
+  │  你現在：自己寫 fetch 串 OpenAI，80 行，串流不穩定
+  │  用了之後：用 useChat hook，3 行，自動串流 + 重試
+  │  差在哪：省 80 行程式碼，穩定性大幅提升
   │
-  │  安全: MIT ✓ | CVE: 0 | 活躍維護 ✓
+  │  安全嗎：MIT ✓ | 漏洞: 0 | 有人維護 ✓
   └─────────────────────────────────────
 ```
 
@@ -118,7 +116,7 @@ curl -o .cursor/rules/oss.mdc https://raw.githubusercontent.com/maxihermit/gate-
 - **不讀** .env、密碼、金鑰
 - **不安裝**任何東西，只給你報告
 - **不會把你的程式碼傳到外面**
-- 規則全寫在 `oss.md` 裡，100 行，你可以自己看完每一行
+- 規則全寫在 `oss.md` 裡，你可以自己看完每一行
 
 ## GITHUB_TOKEN（選用）
 
@@ -132,68 +130,22 @@ export GITHUB_TOKEN=ghp_...
 
 ## English
 
-> *"You dare develop without consulting the treasury? All the world's open-source treasures belong to me."*
-
 An AI skill that searches GitHub and Hacker News for trending open-source projects, tells you which ones are useful for your project, and checks if they're safe to use.
 
 **It only reports. It never installs anything.**
 
-### How it works
-
-```
-You're building a project
-      ↓
-New open-source tools appear on GitHub every day
-You can't check them all manually
-      ↓
-/oss searches for you
-      ↓
-Compares against your project's tech stack and needs
-      ↓
-Checks security: license, known vulnerabilities, maintenance status
-      ↓
-Gives you a verdict: SSR / SR / R / N / Junk
-```
-
-### Grades
-
-| Grade | Meaning |
-|-------|---------|
-| SSR | Solves your problem. Safe. Use it. |
-| SR | Worth trying. |
-| R | Has potential. Evaluate further. |
-| N | Has concerns. Wait. |
-| Junk | Unsafe. Don't use it. |
-
 ### Install
 
-#### Claude Code
-
+**Claude Code:**
 ```bash
 curl -o ~/.claude/commands/oss.md https://raw.githubusercontent.com/maxihermit/gate-of-oss/main/oss.md
 ```
 
-#### OpenAI Codex
+**Codex:** `mkdir -p .codex/skills/oss && curl -o .codex/skills/oss/SKILL.md https://raw.githubusercontent.com/maxihermit/gate-of-oss/main/oss.md`
 
-```bash
-mkdir -p .codex/skills/oss
-curl -o .codex/skills/oss/SKILL.md https://raw.githubusercontent.com/maxihermit/gate-of-oss/main/oss.md
-```
+**Cursor:** `mkdir -p .cursor/rules && curl -o .cursor/rules/oss.mdc https://raw.githubusercontent.com/maxihermit/gate-of-oss/main/oss.md`
 
-#### Cursor
-
-```bash
-mkdir -p .cursor/rules
-curl -o .cursor/rules/oss.mdc https://raw.githubusercontent.com/maxihermit/gate-of-oss/main/oss.md
-```
-
-#### GitHub Copilot
-
-Append the contents of `oss.md` to your existing `.github/copilot-instructions.md`.
-
-#### Others
-
-Paste the contents of `oss.md` into your conversation.
+**Copilot:** Append `oss.md` contents to `.github/copilot-instructions.md`.
 
 ### Usage
 
@@ -208,33 +160,17 @@ Paste the contents of `oss.md` into your conversation.
 
 ### Daily auto-scan
 
-In Claude Code, say:
+In Claude Code, say: `Help me create a scheduled task that runs /oss all every morning`
 
-```
-Help me create a scheduled task that runs /oss all every morning
-```
+### Grades
 
-### Example output
-
-```
-═══════════════════════════════════════
-  my-web-app — e-commerce site
-═══════════════════════════════════════
-
-  SSR  ⭐ 15,234  vercel/ai — Streaming AI in 3 lines
-  SR   ⭐ 82,000  shadcn/ui — Stop building UI from scratch
-
-  ┌─ vercel/ai — AI SDK for building AI-powered apps
-  │  ⭐ 15,234  MIT  2 days ago  156 contributors
-  │  Grade: SSR
-  │
-  │  Before:  Manual fetch to OpenAI, 80 lines, flaky streaming
-  │  After:   useChat hook, 3 lines, auto-streaming + retry
-  │  Gain:    Save 80 lines, much more stable
-  │
-  │  Security: MIT ✓ | CVE: 0 | Active ✓
-  └─────────────────────────────────────
-```
+| Grade | Meaning |
+|-------|---------|
+| SSR | Solves your problem. Safe. Use it. |
+| SR | Worth trying. |
+| R | Has potential. Evaluate further. |
+| N | Has concerns. Wait. |
+| Junk | Unsafe. Don't use it. |
 
 ### Security & Privacy
 
@@ -242,16 +178,7 @@ Help me create a scheduled task that runs /oss all every morning
 - Never reads .env, passwords, API keys
 - Never installs anything
 - Never sends your code anywhere
-- Full prompt is in `oss.md` — 100 lines, read it yourself
-
-### GITHUB_TOKEN (optional)
-
-Without it: 60 GitHub API requests per hour.
-With it: 5,000 per hour.
-
-```bash
-export GITHUB_TOKEN=ghp_...
-```
+- Full prompt is in `oss.md` — read it yourself
 
 ## License
 

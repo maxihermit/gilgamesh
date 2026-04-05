@@ -149,11 +149,11 @@ In Claude Code, say: `Help me create a scheduled task that runs /gilgamesh all e
 
 | Grade | Meaning |
 |-------|---------|
-| Noble Phantasm（寶具級） | Solves your problem. Safe. Use it. |
-| Heroic Spirit（英靈級） | Worth trying. |
-| Mystic Code（禮裝級） | Has potential. Evaluate further. |
-| Sealed（封印中） | Has concerns. Wait. |
-| Counterfeit（贋作） | Unsafe. Don't use it. |
+| Noble Phantasm | Solves your problem. Safe. Use it. |
+| Heroic Spirit | Worth trying. |
+| Mystic Code | Has potential. Evaluate further. |
+| Sealed | Has concerns. Wait. |
+| Counterfeit | Unsafe. Don't use it. |
 
 ### Security & Privacy
 

@@ -38,6 +38,7 @@ curl -o .claude/commands/4d-bag.md https://raw.githubusercontent.com/maxihermit/
 
 Then use:
 ```
+/4d-bag init                     # first time: create project profile
 /4d-bag                          # scan current project
 /4d-bag all                      # scan all projects
 /4d-bag audit owner/repo         # security audit
@@ -118,6 +119,7 @@ curl -o ~/.claude/commands/4d-bag.md https://raw.githubusercontent.com/maxihermi
 ### 使用方式
 
 ```
+/4d-bag init                     # 第一次用：建立專案描述檔
 /4d-bag                          # 掃描目前的專案
 /4d-bag all                      # 掃描所有專案
 /4d-bag audit owner/repo         # 資安審計指定 repo
@@ -127,11 +129,12 @@ curl -o ~/.claude/commands/4d-bag.md https://raw.githubusercontent.com/maxihermi
 
 ### 它會做什麼
 
-1. 讀取你的 package.json 等清單檔案（不讀原始碼、不讀 .env）
-2. 搜尋 GitHub + Hacker News 熱門專案
-3. 評估跟你專案的相關性
-4. 檢查 license、已知漏洞、維護狀態
-5. 給出建議：ADOPT（直接用）/ TRIAL（試試看）/ ASSESS（觀望）/ HOLD（先別碰）/ AVOID（別用）
+1. 第一次���用時會問你 3 個問題（專案做什麼、痛點、感興趣的主題），存成 `.4dbag-profile.yml`
+2. 之後每次自動讀取��個檔案，不浪費 token
+3. 搜尋 GitHub + Hacker News 熱門專案
+4. 根據你的痛點和興趣評估相關性
+5. 檢查 license、已知漏洞、維護狀態
+6. 給出建議：ADOPT（直接用）/ TRIAL（試試看）/ ASSESS（觀望）/ HOLD（先別碰）/ AVOID（別用）
 
 可以搭配排程任務每天自動跑。
 

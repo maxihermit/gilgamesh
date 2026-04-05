@@ -1,34 +1,41 @@
-# gilgamesh — Gate of Open Source（王之開源）
+# gilgamesh — 王之開源（Gate of Open Source）
 
 ![Gate of Open Source](assets/banner.png)
 
-[English](#the-gate) | [繁體中文](#繁體中文)
+[繁體中文](#這是什麼) | [English](#english)
 
-> *"You dare develop without consulting the treasury? All the world's open-source treasures belong to me."*
+> *「你竟敢在沒有查閱寶庫的情況下開發？天下所有的開源寶物皆屬於我。」*
 
-An AI skill that opens the Gate to GitHub's infinite treasury — discovers trending projects, appraises their worth to your kingdom (project), and inspects them for curses (security issues).
+## 這是什麼
 
-**The King appraises. The King never installs.**
+一個 AI Skill。裝好之後，你只要打 `/gilgamesh`，它就會自動去 GitHub 和 Hacker News 找最近熱門的開源專案，跟你說哪些對你正在開發的東西有用，然後幫你檢查那些專案安不安全。
 
-## The Gate
+**它只會給你報告，不會幫你安裝任何東西。**
+
+## 它怎麼運作
 
 ```
-Your kingdom is under development
-        ↓
-Every day, new treasures appear in the vault (GitHub)
-You cannot inspect them all yourself
-        ↓
-Open the Gate → survey the treasury
-        ↓
-The Appraiser compares each treasure against your kingdom's needs
-        ↓
-Inspects for curses: license, CVEs, abandoned forges
-        ↓
-Verdict:  Noble Phantasm / Heroic Spirit / Mystic Code / Sealed / Counterfeit
-          寶具級        / 英靈級       / 禮裝級      / 封印中 / 贋作
+你正在開發專案
+      ↓
+每天 GitHub 上都有新的開源工具出現
+你不可能每天自己去看
+      ↓
+gilgamesh 幫你去看
+      ↓
+比對你的專案用了什麼技術、缺了什麼
+      ↓
+檢查安全性：授權條款、已知漏洞、有沒有人在維護
+      ↓
+給你鑑定結果：
+
+  寶具級 — 直接解決你的問題，安全，馬上用
+  英靈級 — 值得試用
+  禮裝級 — 有潛力，再看看
+  封印中 — 有疑慮，先別碰
+  贋作　 — 不安全，別用
 ```
 
-## Install
+## 安裝
 
 ### Claude Code
 
@@ -36,84 +43,69 @@ Verdict:  Noble Phantasm / Heroic Spirit / Mystic Code / Sealed / Counterfeit
 curl -o ~/.claude/commands/gilgamesh.md https://raw.githubusercontent.com/maxihermit/gilgamesh/main/gilgamesh.md
 ```
 
-Then:
-```
-/gilgamesh init                     # Declare your kingdom
-/gilgamesh                          # Open the Gate
-/gilgamesh all                      # Survey all kingdoms
-/gilgamesh audit owner/repo         # Appraise a specific treasure
-/gilgamesh typescript               # Filter treasury by language
-/gilgamesh presentation tools       # Seek a specific class of treasure
-```
+### Codex / Cursor / Copilot / 其他
 
-### OpenAI Codex / Cursor / Copilot / Others
+把 `gilgamesh.md` 的內容複製到你用的平台的設定檔裡：
 
-Copy the contents of `gilgamesh.md` into your platform's instruction file:
-
-| Platform | Copy to |
-|----------|---------|
+| 平台 | 貼到哪裡 |
+|------|---------|
 | Codex | `AGENTS.md` |
 | Cursor | `.cursorrules` |
 | Copilot | `.github/copilot-instructions.md` |
-| Others | Paste into conversation |
+| 其他 | 直接貼到對話裡 |
 
-### Daily Auto-Scan
-
-In Claude Code:
+## 怎麼用
 
 ```
-Help me create a scheduled task that runs /gilgamesh all every morning
+/gilgamesh init                     # 第一次用：告訴它你的專案在做什麼
+/gilgamesh                          # 幫你找有用的新工具
+/gilgamesh all                      # 一次掃描你所有的專案
+/gilgamesh audit owner/repo         # 檢查某個 repo 安不安全
+/gilgamesh typescript               # 只看特定語言的
+/gilgamesh 簡報工具                   # 搜特定主題
 ```
 
-The Gate opens at dawn. You receive a report of new treasures.
+### 每天自動跑
 
-## Appraisal System
-
-| Grade | Meaning |
-|-------|---------|
-| **Noble Phantasm（寶具級）** | Legendary. Directly solves your pain point. Safe. Summon it. |
-| **Heroic Spirit（英靈級）** | Powerful. Worth summoning for trial. |
-| **Mystic Code（禮裝級）** | Has potential. Needs further evaluation. |
-| **Sealed（封印中）** | Concerns detected. Keep in the vault. |
-| **Counterfeit（贋作）** | Unsafe or unsuitable. Cast it out. |
-
-## Example Output
+在 Claude Code 裡說：
 
 ```
-## Kingdom: my-web-app
-An e-commerce fortress built on Next.js and Prisma
-Arsenal: TypeScript, React, Next.js, Prisma, Tailwind
-Vulnerabilities: auth is hand-forged and brittle
-
-### vercel/ai — AI SDK for building AI-powered apps
-⭐ 15,234 | MIT | active forge (2 days ago) | 156 blacksmiths
-**Noble Phantasm（寶具級）**
-Appraisal: Your kingdom already uses Next.js. This treasure grants streaming
-AI responses with 3 lines of incantation.
-Authenticity: Clean inscription (MIT), no curses (0 CVEs), active forge.
-
-### shadcn/ui — UI components forged on Radix
-⭐ 82,000 | MIT | active forge (today) | 400+ blacksmiths
-**Heroic Spirit（英靈級）**
-Appraisal: Your kingdom uses Tailwind but forges components from raw metal.
-This treasure saves countless hours.
-Authenticity: Clean inscription (MIT), no curses, heavily maintained.
+幫我建一個排程任務，每天早上跑 /gilgamesh all
 ```
 
-## Security & Privacy
+每天早上自動收到報告。
 
-The King's Appraiser follows strict protocol:
+## 報告長什麼樣子
 
-- **Only reads** royal decrees (package.json, requirements.txt) — never inspects source code
-- **Never reads** .env, credentials, API keys, or secret scrolls
-- **Never deploys** anything — only appraises
-- **Never sends** your kingdom's code to external realms — only queries the public gates (GitHub / HN / OSV)
-- Full appraisal protocol is in `gilgamesh.md` — 100 lines, inspect it yourself
+```
+## 你的專案：my-web-app
+技術棧：TypeScript, React, Next.js, Prisma, Tailwind
+痛點：auth 自己寫的很脆弱，沒有測試
 
-## Optional: GITHUB_TOKEN
+### vercel/ai — 做 AI 功能的 SDK
+⭐ 15,234 | MIT | 2 天前更新 | 156 人貢獻
+寶具級
+為什麼推薦：你已經在用 Next.js 了，這個讓你 3 行程式碼就能做串流 AI 回應。
+安全：MIT 授權，沒有已知漏洞，持續維護中。
 
-Without a royal seal: 60 gate openings per hour.
-With a royal seal: 5,000 per hour.
+### shadcn/ui — 基於 Radix 的 UI 元件庫
+⭐ 82,000 | MIT | 今天更新 | 400+ 人貢獻
+英靈級
+為什麼推薦：你在用 Tailwind 但元件都自己刻，這個省很多時間。
+安全：MIT 授權，沒有漏洞，非常活躍。
+```
+
+## 資安與隱私
+
+- 只讀 package.json 這類設定檔，**不讀你的程式碼**
+- **不讀** .env、密碼、金鑰
+- **不安裝**任何東西，只給你報告
+- **不會把你的程式碼傳到外面**
+- 規則全寫在 `gilgamesh.md` 裡，100 行，你可以自己看完每一行
+
+## GITHUB_TOKEN（選用）
+
+不設也能用，但一小時只能搜 60 次。設了可以搜 5,000 次。
 
 ```bash
 export GITHUB_TOKEN=ghp_...
@@ -121,58 +113,55 @@ export GITHUB_TOKEN=ghp_...
 
 ---
 
-## 繁體中文
+## English
 
-> *「你竟敢在沒有查閱寶庫的情況下開發？天下所有的開源寶物皆屬於我。」*
+> *"You dare develop without consulting the treasury? All the world's open-source treasures belong to me."*
 
-一個 AI Skill，打開通往 GitHub 無盡寶庫的大門——發現熱門專案、鑑定它們對你的王國（專案）的價值、並檢測是否有詛咒（資安問題）。
+An AI skill that searches GitHub and Hacker News for trending open-source projects, tells you which ones are useful for your project, and checks if they're safe to use.
 
-**王只鑑定，不親自部署。**
+**It only reports. It never installs anything.**
 
-### 安裝
+### Install
 
+**Claude Code:**
 ```bash
 curl -o ~/.claude/commands/gilgamesh.md https://raw.githubusercontent.com/maxihermit/gilgamesh/main/gilgamesh.md
 ```
 
-### 使用方式
+**Other platforms:** Copy `gilgamesh.md` contents into `AGENTS.md` (Codex), `.cursorrules` (Cursor), or `.github/copilot-instructions.md` (Copilot).
+
+### Usage
 
 ```
-/gilgamesh init                     # 宣告你的王國
-/gilgamesh                          # 打開寶庫之門
-/gilgamesh all                      # 巡視所有王國
-/gilgamesh audit owner/repo         # 鑑定特定寶物
-/gilgamesh typescript               # 依語言篩選寶庫
-/gilgamesh 簡報工具                   # 搜尋特定類型的寶物
+/gilgamesh init                     # First time: describe your project
+/gilgamesh                          # Find useful new tools
+/gilgamesh all                      # Scan all your projects at once
+/gilgamesh audit owner/repo         # Security check a specific repo
+/gilgamesh typescript               # Filter by language
+/gilgamesh presentation tools       # Search specific topic
 ```
 
-### 鑑定等級
+### Daily auto-scan
 
-| 等級 | 意義 |
-|------|------|
-| **寶具級（Noble Phantasm）** | 傳說級寶物。直接解決你的痛點，安全可靠，立即召喚。 |
-| **英靈級（Heroic Spirit）** | 強大的寶物，值得召喚試用。 |
-| **禮裝級（Mystic Code）** | 有潛力，但需要進一步評估。 |
-| **封印中（Sealed）** | 偵測到疑慮，先留在寶庫裡。 |
-| **贋作（Counterfeit）** | 不安全或不適合。逐出寶庫。 |
+In Claude Code, say: `Help me create a scheduled task that runs /gilgamesh all every morning`
 
-### 每天自動開門
+### Appraisal grades
 
-在 Claude Code 裡直接說：
+| Grade | Meaning |
+|-------|---------|
+| Noble Phantasm（寶具級） | Solves your problem. Safe. Use it. |
+| Heroic Spirit（英靈級） | Worth trying. |
+| Mystic Code（禮裝級） | Has potential. Evaluate further. |
+| Sealed（封印中） | Has concerns. Wait. |
+| Counterfeit（贋作） | Unsafe. Don't use it. |
 
-```
-幫我建一個排程任務，每天早上跑 /gilgamesh all
-```
+### Security & Privacy
 
-每天黎明開門，自動收到新寶物鑑定報告。
-
-### 資安與隱私
-
-- 只讀取設定檔（package.json 等），**不讀原始碼**
-- **不讀** .env、密碼、金鑰等機敏檔案
-- **不安裝**任何東西，只產生鑑定報告
-- **不會把你的程式碼傳到外部**
-- 完整鑑定規則就在 `gilgamesh.md` 裡，100 行，你可以自己審查
+- Only reads config files (package.json, etc.) — never your source code
+- Never reads .env, passwords, API keys
+- Never installs anything
+- Never sends your code anywhere
+- Full prompt is in `gilgamesh.md` — 100 lines, read it yourself
 
 ## License
 

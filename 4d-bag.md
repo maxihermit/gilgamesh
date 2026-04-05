@@ -17,17 +17,37 @@ Discover trending open-source projects and tell the user which ones are useful f
 - `/4d-bag typescript` — filter by language
 - `/4d-bag daily` — last 24 hours (default: weekly)
 - `/4d-bag presentation tools` — search specific topic
-- `/4d-bag deep` — deep mode: also read source code for better recommendations
+- `/4d-bag init` — create or update project profile
 
-## Step 1: Read the Project
+## Step 1: Understand the Project
 
-**Default mode:** Read `package.json`, `requirements.txt`, `pyproject.toml`, `go.mod`, `Cargo.toml`, or `README.md` to understand the tech stack. This is safe and enough for most cases.
+**Check if `.4dbag-profile.yml` exists in the project root.** This file contains the user's own description of their project, saving tokens and giving better results than reading source code.
 
-**Deep mode** (user must explicitly say `deep`): Also scan source code files (*.ts, *.py, *.go, etc.) to understand what the project actually does — e.g. detect hand-rolled auth, custom ORMs, or pain points that manifest files don't reveal. Only use this when the user explicitly requests it.
+**If `.4dbag-profile.yml` exists:** use it directly. Skip to Step 2.
 
-If `all`: scan every subdirectory.
+**If it does NOT exist:** read `package.json`, `requirements.txt`, `pyproject.toml`, `go.mod`, `Cargo.toml`, or `README.md` to detect the tech stack. Then ask the user:
 
-**In both modes: NEVER read .env, credentials, API keys, or secrets.**
+> I detected your project uses [tech stack]. To give you better recommendations, I'd like to create a `.4dbag-profile.yml`. Can you briefly tell me:
+> 1. What does this project do? (one sentence)
+> 2. What are your current pain points or things you wish were easier?
+> 3. Any topics you're especially interested in? (e.g. testing, UI, auth, performance)
+
+Save the answers as `.4dbag-profile.yml`:
+
+```yaml
+name: my-project
+description: E-commerce app with user auth and payment
+stack: [typescript, react, nextjs, prisma, tailwind]
+pain_points: [auth is hand-rolled and fragile, no proper testing setup]
+interests: [auth, testing, ui-components, performance]
+exclude: [crypto, blockchain, game-dev]
+```
+
+**If command is `init`:** always ask the user these questions and create/update the profile, even if one already exists.
+
+**If command is `all`:** check each subdirectory for `.4dbag-profile.yml`. For directories without one, detect stack from manifest files and ask once for all missing profiles.
+
+**NEVER read source code, .env, credentials, API keys, or secrets.**
 
 ## Step 2: Search
 
@@ -44,16 +64,19 @@ curl -s "https://hn.algolia.com/api/v1/search?query=github.com&tags=story&numeri
 ```
 
 If user specified a topic (e.g. "presentation tools"), add it to the GitHub search query.
+If the profile has `interests`, also search for repos matching those topics.
 
 ## Step 3: Evaluate
 
-Only recommend repos that genuinely help the user's project. **Zero is better than noise.**
+Use the project profile (description, pain_points, interests) to judge relevance. Only recommend repos that genuinely help. **Zero is better than noise.**
 
-- ADOPT — clearly useful + safe
-- TRIAL — likely useful, worth trying
-- ASSESS — potential but unclear
-- HOLD — has concerns
+- ADOPT — clearly solves a pain point the user mentioned + safe
+- TRIAL — likely useful for their interests, worth trying
+- ASSESS — potential but unclear fit
+- HOLD — has concerns (security, maintenance)
 - AVOID — unsafe or unsuitable
+
+If the profile has `exclude` topics, skip repos in those categories.
 
 ## Step 4: Security Check
 
@@ -76,12 +99,14 @@ Red flags: no license, archived, last push > 1 year, single contributor.
 
 ```
 ## Your Project: [name]
+[description from profile]
 Tech stack: ...
+Pain points: ...
 
 ### owner/repo — what it does
 ⭐ N stars | MIT | active | N contributors
 **ADOPT**
-Why: one sentence
+Why: [specifically reference the user's pain point or interest this solves]
 Security: one sentence
 ```
 

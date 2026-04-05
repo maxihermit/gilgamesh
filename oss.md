@@ -114,6 +114,8 @@ Classification:
 
 ## Step 4: Present to the King
 
+For each recommendation, include a **Before / After** comparison so the user can instantly see if it's worth switching. Be specific — show actual code, workflow, or architecture differences.
+
 ```
 ## [project name]
 [description]
@@ -123,9 +125,19 @@ Pain points: [pain points]
 ### owner/repo — what it does
 ⭐ N stars | MIT | N days ago | N contributors
 **SSR**
-Why: [specifically how this helps with the user's pain point or interest]
+
+**Before (current):**
+[What the user is doing now — e.g. hand-rolled auth with 200 lines, or using library X, or doing it manually]
+
+**After (with this tool):**
+[What changes — e.g. 20 lines with built-in session management, or automated with one config file]
+
+**Difference:** [one sentence: what specifically gets better — less code, faster, more secure, etc.]
+
 Security: [license status, CVE count if checked, last commit date, contributor count]
 ```
+
+If you can show a code snippet comparison (before vs after), do it — but keep each snippet under 5 lines. If it's not a code change (e.g. a workflow tool), describe the workflow difference instead.
 
 If no results for a project:
 ```

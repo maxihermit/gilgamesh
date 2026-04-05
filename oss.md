@@ -1,6 +1,6 @@
 ---
 name: oss
-description: "Gate of Open Source — Unleash the treasury of GitHub upon your project. Discover, appraise, and judge all open-source treasures."
+description: "自動搜尋 GitHub 熱門開源專案，告訴你哪些對你的專案有用，檢查資安。只看不裝。"
 ---
 
 User command: $ARGUMENTS
